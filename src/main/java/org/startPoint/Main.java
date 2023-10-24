@@ -1,5 +1,7 @@
 package org.startPoint;
 
+import org.fileSavingandLoadingLogic.TextFileLoader;
+import org.fileSavingandLoadingLogic.TextFileSaver;
 import org.uiModules.bottomControlBar.BottomControlBar;
 import org.uiModules.MainFrame;
 import org.uiModules.mainTable.MainTable;
@@ -10,7 +12,8 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        MainFrame mainFrame = new MainFrame(new Menu(), new MainTable(), new BottomControlBar(), new ResultDataPanel());
+        Menu menu = new Menu();
+        MainFrame mainFrame = new MainFrame(menu, new MainTable(), new BottomControlBar(), new ResultDataPanel());
 
     }
 }
