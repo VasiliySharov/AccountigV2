@@ -1,6 +1,7 @@
-package org.fileSavingandLoadingLogic;
+package org.services.fileSavingAndLoadingLogic.lodaers;
 
 import java.io.File;
+import java.util.List;
 
 public class FileSaverContext {
     private FileSaver fileSaver;
@@ -12,15 +13,15 @@ public class FileSaverContext {
         this.fileFormat = fileFormat;
     }
 
-    public void saveFile() {
+    public void saveFile(List<List<String>> tableData) {
 
         if (fileFormat.equals("txt")) {
             fileSaver = new TextFileSaver();
-            fileSaver.saveFile(selectedFile);
+            fileSaver.saveFile(selectedFile, tableData);
             System.out.println("Saving file");
         } else if (fileFormat.equals("ods")) {
             fileSaver = new OdsFileSaver();
-            fileSaver.saveFile(selectedFile);
+            fileSaver.saveFile(selectedFile, tableData);
             System.out.println("Saving file");
         } else {
             System.out.println("Choose the right format (.txt or .ods)");

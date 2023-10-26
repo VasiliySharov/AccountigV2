@@ -1,4 +1,4 @@
-package org.uiModules.mainTable;
+package org.uiModules.mainTable.v1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +38,19 @@ public class NestedRow extends JPanel{
 
     }
     public NestedRow(List<String> rowData) {  // constructor for creating rows filled with data
+        for (int i = 0; i < rowData.size(); i++) {
+            JTextField field = new JTextField(rowData.get(i));
+            field.setFont(field.getFont().deriveFont(0,18));
+            int width = field.getPreferredSize().width;
+            int height = field.getPreferredSize().height;
+            if  (height>this.height) this.height = height;
 
+            this.width += width;
+
+            field.setPreferredSize(new Dimension(width, height));
+//            columns.add(field);
+            add(field);
+        }
     }
 
     @Override

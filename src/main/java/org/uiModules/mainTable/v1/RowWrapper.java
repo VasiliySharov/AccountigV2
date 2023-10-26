@@ -1,4 +1,4 @@
-package org.uiModules.mainTable;
+package org.uiModules.mainTable.v1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +19,7 @@ public class RowWrapper extends JPanel {
         add(nested);
         setMaximumSize(new Dimension(nested.getWidth(), nested.getHeight()));
     }
+    // Implemented
     public RowWrapper(List<String> rowData) { // constructor for creating rows filled with data. logic for filling is in NestedRow.
         JPanel nested = new NestedRow(rowData);
         add(nested);

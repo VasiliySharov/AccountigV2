@@ -1,12 +1,16 @@
 package org.uiModules.menu;
 
-import org.fileSavingandLoadingLogic.*;
+import org.services.fileSavingAndLoadingLogic.lodaers.FileLoaderContext;
+import org.services.fileSavingAndLoadingLogic.lodaers.FileSaverContext;
+import org.uiModules.mainTable.v2.MainTable;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.util.List;
 
 public class Menu extends JMenuBar {
+    private final MainTable mainTable;
     private final JMenu fileMenu = new JMenu("File");
     private final JMenuItem loadMenuItem = new JMenuItem("Load");
     private final JMenuItem saveMenuItem = new JMenuItem("Save");
@@ -14,16 +18,15 @@ public class Menu extends JMenuBar {
     // filter is used in load and save methods.
     private final FileNameExtensionFilter filter = new FileNameExtensionFilter(
             ".txt, .ods", "txt", "ods");
-    private FileLoaderContext fileLoaderContext;
-    private FileSaverContext fileSaverContext;
+
     {
         fileMenu.add(loadMenuItem);
         fileMenu.add(saveMenuItem);
         add(fileMenu);
     }
 
-    public Menu() {
-
+    public Menu(MainTable mainTable) {
+        this.mainTable = mainTable;
         loadMenuItem.addActionListener(e -> loadTableData());
         saveMenuItem.addActionListener(e -> saveTableData());
     }
@@ -48,8 +51,9 @@ public class Menu extends JMenuBar {
                 String fileFormat = fileName.substring(lastIndex + 1);
                 System.out.println("Selected file format: " + fileFormat);
 
-                fileLoaderContext = new FileLoaderContext(selectedFile, fileFormat);
-                fileLoaderContext.loadFile();
+                FileLoaderContext fileLoaderContext = new FileLoaderContext(selectedFile, fileFormat);
+                List<List<String>> loadedData = fileLoaderContext.loadFile();
+                mainTable.renderRows(loadedData);
             } else {
                 System.out.println("Unable to determine the file format.");
             }
@@ -82,8 +86,8 @@ public class Menu extends JMenuBar {
                 String fileFormat = fileName.substring(lastIndex + 1);
                 System.out.println("Selected file format: " + fileFormat);
 
-                fileSaverContext = new FileSaverContext(selectedFile, fileFormat);
-                fileSaverContext.saveFile();
+                FileSaverContext fileSaverContext = new FileSaverContext(selectedFile, fileFormat);
+//                fileSaverContext.saveFile();
             } else {
                 System.out.println("Unable to determine the file format.");
             }

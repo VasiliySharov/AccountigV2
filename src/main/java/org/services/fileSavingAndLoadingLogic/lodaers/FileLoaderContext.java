@@ -1,6 +1,8 @@
-package org.fileSavingandLoadingLogic;
+package org.services.fileSavingAndLoadingLogic.lodaers;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 // this classes use Strategy pattern.
 public class FileLoaderContext {
@@ -13,18 +15,21 @@ public class FileLoaderContext {
         this.fileFormat = fileFormat;
     }
 
-    public void loadFile() {
-
+    public List<List<String>> loadFile() {
+        List<List<String>> loadedData = new ArrayList<>();
         if (fileFormat.equals("txt")) {
             fileLoader = new TextFileLoader();
-            fileLoader.loadFile(selectedFile);
+            loadedData = fileLoader.loadFile(selectedFile);
             System.out.println("Loading file");
+            return loadedData;
         } else if (fileFormat.equals("ods")) {
             fileLoader = new OdsFileLoader();
-            fileLoader.loadFile(selectedFile);
+            loadedData = fileLoader.loadFile(selectedFile);
             System.out.println("Loading file");
+            return loadedData;
         } else {
             System.out.println("Choose the right format (.txt or .ods)");
         }
+        return loadedData;
     }
 }
