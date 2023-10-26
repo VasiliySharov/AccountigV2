@@ -14,7 +14,8 @@ public class MainFrame extends JFrame{
         getContentPane().add(resultDataPanel, BorderLayout.SOUTH);
 
         setMinimumSize(new Dimension(500, 500));
-//        mainFrame.pack();
+
+        pack();
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
