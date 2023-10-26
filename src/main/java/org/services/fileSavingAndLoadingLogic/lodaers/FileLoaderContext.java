@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 // this classes use Strategy pattern.
 public class FileLoaderContext {
@@ -16,8 +17,8 @@ public class FileLoaderContext {
         this.fileFormat = fileFormat;
     }
 
-    public List<List<String>> loadFile() {
-        List<List<String>> loadedData = new ArrayList<>();
+    public Vector<Vector<String>> loadFile() {
+        Vector<Vector<String>> loadedData = new Vector<>();
         if (fileFormat.equals("txt")) {
             fileLoader = new TextFileLoader();
             loadedData = fileLoader.loadFile(selectedFile);

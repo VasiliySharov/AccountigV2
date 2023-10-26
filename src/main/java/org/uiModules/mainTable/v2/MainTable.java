@@ -1,5 +1,8 @@
 package org.uiModules.mainTable.v2;
 
+import org.services.fileSavingAndLoadingLogic.usersHandlers.UsersLoader;
+import org.services.users.UserManager;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -28,12 +31,14 @@ public class MainTable extends JPanel {
 //		jp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         add(jp);
 
-        defineComboBox(listOfSuppliers.getList(), table, 0);
-        defineComboBox(listOfBoosters.getList(), table, 1);
-        defineComboBox(new String[]{"USD", "EUR", "RUB"}, table, 18);
-        defineComboBox(listOfBoosters.getList(), table, 10);
-        defineComboBox(listOfBoosters.getList(), table, 11);
-        defineComboBox(listOfBoosters.getList(), table, 17);
+
+        new UsersLoader().loadUsers();
+        defineComboBox(UserManager.getSuppliersList(), table, 0);
+        defineComboBox(UserManager.getBoostersList(), table, 1);
+        defineComboBox(new Vector<String>(Arrays.asList(new String[]{"USD", "EUR", "RUB"})), table, 18);
+        defineComboBox(UserManager.getBoostersList(), table, 10);
+        defineComboBox(UserManager.getBoostersList(), table, 11);
+        defineComboBox(UserManager.getBoostersList(), table, 17);
 
 
     }
@@ -70,11 +75,11 @@ public class MainTable extends JPanel {
         }
         return table;
     }
-    private void defineComboBox(String[] items, JTable table, int columnIndex) {
+    private void defineComboBox(Vector<String> items, JTable table, int columnIndex) {
         JComboBox<String> jComboBox = new JComboBox<String>(items);
         DefaultCellEditor cellEditor = new DefaultCellEditor(jComboBox);
         table.getColumnModel().getColumn(columnIndex).setCellEditor(cellEditor);
     }
-    public void renderRows(List<List<String>> loadedData) {
+    public void renderRows(Vector<Vector<String>> loadedData) {
     }
 }

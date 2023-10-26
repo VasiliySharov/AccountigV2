@@ -1,5 +1,6 @@
 package org.uiModules.menu;
 
+import org.constants.Extensions;
 import org.services.fileSavingAndLoadingLogic.lodaers.FileLoaderContext;
 import org.services.fileSavingAndLoadingLogic.lodaers.FileSaverContext;
 import org.uiModules.mainTable.v2.MainTable;
@@ -8,6 +9,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.util.List;
+import java.util.Vector;
 
 public class Menu extends JMenuBar {
     private final MainTable mainTable;
@@ -16,8 +18,6 @@ public class Menu extends JMenuBar {
     private final JMenuItem saveMenuItem = new JMenuItem("Save");
 
     // filter is used in load and save methods.
-    private final FileNameExtensionFilter filter = new FileNameExtensionFilter(
-            ".txt, .ods", "txt", "ods");
 
     {
         fileMenu.add(loadMenuItem);
@@ -34,7 +34,7 @@ public class Menu extends JMenuBar {
 
     private void loadTableData() {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileFilter(filter);
+        fileChooser.setFileFilter(Extensions.filter);
 
         int returnValue = fileChooser.showOpenDialog(null);
         File selectedFile;
@@ -52,7 +52,7 @@ public class Menu extends JMenuBar {
                 System.out.println("Selected file format: " + fileFormat);
 
                 FileLoaderContext fileLoaderContext = new FileLoaderContext(selectedFile.toPath(), fileFormat);
-                List<List<String>> loadedData = fileLoaderContext.loadFile();
+                Vector<Vector<String>> loadedData = fileLoaderContext.loadFile();
                 mainTable.renderRows(loadedData);
             } else {
                 System.out.println("Unable to determine the file format.");
@@ -69,7 +69,7 @@ public class Menu extends JMenuBar {
 
     private void saveTableData() {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileFilter(filter);
+        fileChooser.setFileFilter(Extensions.filter);
 
         int returnValue = fileChooser.showSaveDialog(null);
         File selectedFile;
