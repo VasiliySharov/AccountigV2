@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,9 +12,9 @@ import java.util.regex.Pattern;
 
 public class TextFileLoader implements FileLoader {
     @Override
-    public List<List<String>> loadFile(File selectedFile) {
+    public List<List<String>> loadFile(Path selectedFile) {
         List<List<String>> loadedData = new ArrayList<>();
-        try (BufferedReader bufferedReader = Files.newBufferedReader(selectedFile.toPath());){
+        try (BufferedReader bufferedReader = Files.newBufferedReader(selectedFile);){
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {

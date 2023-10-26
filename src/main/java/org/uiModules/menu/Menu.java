@@ -51,7 +51,7 @@ public class Menu extends JMenuBar {
                 String fileFormat = fileName.substring(lastIndex + 1);
                 System.out.println("Selected file format: " + fileFormat);
 
-                FileLoaderContext fileLoaderContext = new FileLoaderContext(selectedFile, fileFormat);
+                FileLoaderContext fileLoaderContext = new FileLoaderContext(selectedFile.toPath(), fileFormat);
                 List<List<String>> loadedData = fileLoaderContext.loadFile();
                 mainTable.renderRows(loadedData);
             } else {
@@ -86,7 +86,7 @@ public class Menu extends JMenuBar {
                 String fileFormat = fileName.substring(lastIndex + 1);
                 System.out.println("Selected file format: " + fileFormat);
 
-                FileSaverContext fileSaverContext = new FileSaverContext(selectedFile, fileFormat);
+                FileSaverContext fileSaverContext = new FileSaverContext(selectedFile.toPath(), fileFormat);
 //                fileSaverContext.saveFile();
             } else {
                 System.out.println("Unable to determine the file format.");

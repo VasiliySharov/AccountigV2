@@ -1,16 +1,17 @@
 package org.services.fileSavingAndLoadingLogic.lodaers;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 // this classes use Strategy pattern.
 public class FileLoaderContext {
     private FileLoader fileLoader;
-    private File selectedFile;
+    private Path selectedFile;
     private String fileFormat;
 
-    public FileLoaderContext(File selectedFile, String fileFormat) {
+    public FileLoaderContext(Path selectedFile, String fileFormat) {
         this.selectedFile = selectedFile;
         this.fileFormat = fileFormat;
     }

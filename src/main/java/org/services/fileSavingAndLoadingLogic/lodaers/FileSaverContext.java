@@ -1,14 +1,15 @@
 package org.services.fileSavingAndLoadingLogic.lodaers;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 
 public class FileSaverContext {
     private FileSaver fileSaver;
-    private File selectedFile;
+    private Path selectedFile;
     private String fileFormat;
 
-    public FileSaverContext(File selectedFile, String fileFormat) {
+    public FileSaverContext(Path selectedFile, String fileFormat) {
         this.selectedFile = selectedFile;
         this.fileFormat = fileFormat;
     }
