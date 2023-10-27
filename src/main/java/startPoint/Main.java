@@ -1,4 +1,4 @@
-package org.startPoint;
+package startPoint;
 
 import org.uiModules.bottomControlBar.BottomControlBar;
 import org.uiModules.MainFrame;

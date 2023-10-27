@@ -1,6 +1,6 @@
 package org.uiModules.mainTable.v2;
 
-import org.services.fileSavingAndLoadingLogic.usersHandlers.UsersLoader;
+import org.services.fileSavingAndLoadingLogic.users_IO.UsersLoader;
 import org.services.users.UserManager;
 
 import javax.swing.*;
@@ -9,7 +9,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Vector;
 
 public class MainTable extends JPanel {

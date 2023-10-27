@@ -1,10 +1,9 @@
-package org.services.fileSavingAndLoadingLogic.lodaers;
+package org.services.fileSavingAndLoadingLogic.table_IO;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.util.List;
 
-public class OdsFileSaver implements FileSaver {
+public class TextFileSaver implements FileSaver {
     @Override
     public void saveFile(Path selectedFile, List<List<String>> tableData) {
 
