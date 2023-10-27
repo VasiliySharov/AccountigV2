@@ -1,11 +1,14 @@
 package org.services.users;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
 public class User {
-    private String name;
-    private boolean booster = false;
-    private boolean supplier = false;
+    private @Getter String name;
+    private @Setter boolean booster = false;
+    private @Setter boolean supplier = false;
 
     public User(String name) {
         this.name = name;
@@ -38,29 +41,6 @@ public class User {
 //            return new User(this);
 //        }
 //    }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public boolean isBooster() {
-        return booster;
-    }
-
-    public void setBooster(boolean booster) {
-        this.booster = booster;
-    }
-
-    public boolean isSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(boolean supplier) {
-        this.supplier = supplier;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,12 +1,19 @@
 package org.services.users;
 
+import lombok.Getter;
+
 import java.util.*;
 
 public class UserManager {
+    @Getter
     private  static final Map<String, User> users = new HashMap<>();
+    @Getter
     private  static final Map<String, User> boosters = new HashMap<>();
+    @Getter
     private  static final Map<String, User> suppliers = new HashMap<>();
+    @Getter
     private  static final Vector<String> boostersList = new Vector<>();
+    @Getter
     private  static final Vector<String> suppliersList = new Vector<>();
 
 
@@ -25,23 +32,4 @@ public class UserManager {
         }
     }
 
-    public static Map<String, User> getUsers() {
-        return users;
-    }
-
-    public static Map<String, User> getBoosters() {
-        return boosters;
-    }
-
-    public static Map<String, User> getSuppliers() {
-        return suppliers;
-    }
-
-    public static Vector<String> getBoostersList() {
-        return boostersList;
-    }
-
-    public static Vector<String> getSuppliersList() {
-        return suppliersList;
-    }
 }
