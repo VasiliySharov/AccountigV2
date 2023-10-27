@@ -1,11 +1,20 @@
 package org.services.tableDataProcessing;
 
-import java.util.List;
+import org.services.fileSavingAndLoadingLogic.users_IO.UsersLoader;
+import org.services.users.UserManager;
 
-public class DataProcessingImpl implements DataProcessing{
+import java.util.Vector;
+
+public class DataProcessingImpl implements DataProcessing {
     @Override
-    public List<List<String>> processLoadedFileData(List<List<String>> loadedData) {
+    public void processLoadedFileData(Vector<Vector<String>> loadedData) {
+        new UsersLoader().loadUsers();
 
-        return loadedData;
+
+    }
+
+    @Override
+    public Vector<Vector<String>> getTableData() {
+        return null;
     }
 }

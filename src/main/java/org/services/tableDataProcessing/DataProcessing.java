@@ -1,8 +1,9 @@
 package org.services.tableDataProcessing;
 
-import java.util.List;
+import java.util.Vector;
 
 public interface DataProcessing {
 
-    public List<List<String>> processLoadedFileData(List<List<String>> loadedData);
+    public void processLoadedFileData(Vector<Vector<String>> loadedData);
+    public Vector<Vector<String>> getTableData();
 }

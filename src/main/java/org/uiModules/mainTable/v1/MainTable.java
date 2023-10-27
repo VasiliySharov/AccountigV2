@@ -24,12 +24,12 @@ public class MainTable extends JPanel {
     // Implemented
     public void renderRows(List<List<String>> loadedData) {
         DataProcessingImpl dataProcessing = new DataProcessingImpl();
-        List<List<String>> processed = dataProcessing.processLoadedFileData(loadedData);
+//        List<List<String>> processed = dataProcessing.processLoadedFileData(loadedData);
 
-        for (List<String> rowData : processed) {
-            RowWrapper rowWrapper = new RowWrapper(rowData); // render logic in NestedRow.
-            add(rowWrapper);
-        }
+//        for (List<String> rowData : processed) {
+//            RowWrapper rowWrapper = new RowWrapper(rowData); // render logic in NestedRow.
+//            add(rowWrapper);
+//        }
     }
 
     public void createNewRow() {

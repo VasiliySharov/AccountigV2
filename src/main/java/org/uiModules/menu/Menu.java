@@ -3,17 +3,18 @@ package org.uiModules.menu;
 import org.constants.Extensions;
 import org.services.fileSavingAndLoadingLogic.table_IO.FileLoaderContext;
 import org.services.fileSavingAndLoadingLogic.table_IO.FileSaverContext;
-import org.uiModules.mainTable.v2.MainTable;
+import org.uiModules.controller.DataFlowController;
 
 import javax.swing.*;
 import java.io.File;
 import java.util.Vector;
 
 public class Menu extends JMenuBar {
-    private final MainTable mainTable;
+
     private final JMenu fileMenu = new JMenu("File");
     private final JMenuItem loadMenuItem = new JMenuItem("Load");
     private final JMenuItem saveMenuItem = new JMenuItem("Save");
+    private final DataFlowController dataFlowController;
 
     // filter is used in load and save methods.
 
@@ -23,8 +24,8 @@ public class Menu extends JMenuBar {
         add(fileMenu);
     }
 
-    public Menu(MainTable mainTable) {
-        this.mainTable = mainTable;
+    public Menu(DataFlowController dataFlowController) {
+        this.dataFlowController = dataFlowController;
         loadMenuItem.addActionListener(e -> loadTableData());
         saveMenuItem.addActionListener(e -> saveTableData());
     }
@@ -51,7 +52,7 @@ public class Menu extends JMenuBar {
 
                 FileLoaderContext fileLoaderContext = new FileLoaderContext(selectedFile.toPath(), fileFormat);
                 Vector<Vector<String>> loadedData = fileLoaderContext.loadFile();
-                mainTable.renderRows(loadedData);
+                dataFlowController.loadData(loadedData);
             } else {
                 System.out.println("Unable to determine the file format.");
             }
