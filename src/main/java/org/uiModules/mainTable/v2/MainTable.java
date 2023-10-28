@@ -1,5 +1,7 @@
 package org.uiModules.mainTable.v2;
 
+import org.constants.Currencies;
+import org.constants.Extensions;
 import org.services.users.UserManager;
 
 import javax.swing.*;
@@ -29,9 +31,6 @@ public class MainTable extends JPanel {
 //		jp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         add(jp);
 
-        JComboBox<String> suppliersList = new JComboBox<>(UserManager.getSuppliersList());
-        DefaultCellEditor suppliersListEditor = new DefaultCellEditor(suppliersList);
-        table.getColumnModel().getColumn(0).setCellEditor(suppliersListEditor);
     }
 
     private String[] defineColumnNames() {
@@ -41,7 +40,7 @@ public class MainTable extends JPanel {
                 "ORDER", "Booster 1", "Booster 2", "Full Price",
                 "Price(-Fee)", "B1 Profit", "B2 Profit", "Receiver's profit",
                 "Paid to", "Currency", "Status", "PAID", "Add. info.",
-                "Paid off", "Recieved on", "Completed on", "Payout Group"};
+                "Paid off", "Received on", "Completed on", "Payout Group"};
     }
     private JTable defineTable() {
         JTable table = new JTable(tableModel);
@@ -70,30 +69,23 @@ public class MainTable extends JPanel {
 //        table.getColumnModel().getColumn(columnIndex).setCellEditor(null);
 //        tableModel.fireTableDataChanged();
 
-//        table.getColumnModel().getColumn(columnIndex).setCellEditor(cellEditor);
-//        jComboBox.addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                System.out.println("selected "+ e.getItem());
-//            }
-//        });
-
-
+        JComboBox<String> jComboBox = new JComboBox<>(users);
+        DefaultCellEditor cellEditor = new DefaultCellEditor(jComboBox);
+        table.getColumnModel().getColumn(columnIndex).setCellEditor(cellEditor);
     }
     private void defineAllComboBoxes() {
-
-//        defineComboBoxHelper(UserManager.getSuppliersList(), table, 0);
-//        defineComboBoxHelper(UserManager.getBoostersList(), table, 1);
-//        defineComboBoxHelper(new Vector<String>(Arrays.asList(new String[]{"USD", "EUR", "RUB"})), table, 18);
-//        defineComboBoxHelper(UserManager.getBoostersList(), table, 10);
-//        defineComboBoxHelper(UserManager.getBoostersList(), table, 11);
-//        defineComboBoxHelper(UserManager.getBoostersList(), table, 17);
+        defineComboBoxHelper(UserManager.getSuppliersList(), table, 0);
+        defineComboBoxHelper(UserManager.getBoostersList(), table, 1);
+        defineComboBoxHelper(new Vector<String>(Currencies.CURRENCIES), table, 18);
+        defineComboBoxHelper(UserManager.getBoostersList(), table, 10);
+        defineComboBoxHelper(UserManager.getBoostersList(), table, 11);
+        defineComboBoxHelper(UserManager.getBoostersList(), table, 17);
     }
     public void renderRows(Vector<Vector<String>> loadedData) {
-        table.removeEditor();
+//        table.removeEditor();
         tableModel.setRowCount(0);
-        table.repaint();
-//        defineAllComboBoxes(); // this method is called after processing to initialize data in UserManager
+//        table.repaint();
+        defineAllComboBoxes(); // this method is called after processing to initialize data in UserManager
         setTableData(loadedData);
     }
     public void setTableData(Vector<Vector<String>> loadedData) {

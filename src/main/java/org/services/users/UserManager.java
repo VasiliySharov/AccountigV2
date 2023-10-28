@@ -18,18 +18,18 @@ public class UserManager {
 
 
     public static void createUser(Vector<String> user) { // parameter: accept dataLoaded from a file to create a user.
-        User newUser = new User(user.get(0));
-        if (!users.containsKey(user.get(0))) {
+        User newUser = new User(user);
+        if (!users.containsKey(newUser.getName())) {
             users.put(newUser.getName(), newUser);
-            System.out.println("put "+user.get(0));
+            System.out.println("put "+newUser.toString());
         }
 
-        if(user.size() > 1 && !boosters.containsKey(user.get(0))) {
+        if(user.size() > 1 && !boosters.containsKey(newUser.getName())) {
             boosters.put(newUser.getName(), newUser);
             boostersList.add(newUser.getName());
             newUser.setBooster(true);
         }
-        if(user.size() > 2 && !suppliers.containsKey(user.get(0))) {
+        if(user.size() > 2 && !suppliers.containsKey(newUser.getName())) {
             suppliers.put(newUser.getName(), newUser);
             suppliersList.add(newUser.getName());
             newUser.setSupplier(true);

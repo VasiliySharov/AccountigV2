@@ -2,16 +2,31 @@ package org.services.users;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Objects;
+import java.util.Vector;
 
+@ToString
 public class User {
     private @Getter String name;
     private @Setter boolean booster = false;
     private @Setter boolean supplier = false;
 
-    public User(String name) {
-        this.name = name;
+    public User(Vector<String> data) {
+        for (int i = 0; i < data.size(); i++) {
+            switch (i) {
+                case 0:
+                    this.name = data.get(i);
+                    break;
+                case 1:
+                    this.booster = Boolean.parseBoolean(data.get(i));
+                    break;
+                case 2:
+                    this.supplier = Boolean.parseBoolean(data.get(i));
+                    break;
+            }
+        }
     }
 
     //    public User(UserBuilder builder) {

@@ -33,11 +33,10 @@ public class Menu extends JMenuBar {
 
     private void loadTableData() {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileFilter(Extensions.filter);
+        fileChooser.setFileFilter(Extensions.FILE_NAME_EXTENSIONS);
 
         int returnValue = fileChooser.showOpenDialog(null);
         File selectedFile;
-
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             selectedFile = fileChooser.getSelectedFile();
@@ -50,9 +49,7 @@ public class Menu extends JMenuBar {
                 String fileFormat = fileName.substring(lastIndex + 1);
                 System.out.println("Selected file format: " + fileFormat);
 
-                FileLoaderContext fileLoaderContext = new FileLoaderContext(selectedFile.toPath(), fileFormat);
-                Vector<Vector<String>> loadedData = fileLoaderContext.loadFile();
-                dataFlowController.loadData(loadedData);
+                dataFlowController.loadData(selectedFile.toPath(), fileFormat);
             } else {
                 System.out.println("Unable to determine the file format.");
             }
@@ -60,19 +57,12 @@ public class Menu extends JMenuBar {
     }
 
 
-
-
-
-
-
-
     private void saveTableData() {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileFilter(Extensions.filter);
+        fileChooser.setFileFilter(Extensions.FILE_NAME_EXTENSIONS);
 
         int returnValue = fileChooser.showSaveDialog(null);
         File selectedFile;
-
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             selectedFile = fileChooser.getSelectedFile();
